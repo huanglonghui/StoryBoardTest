@@ -12,9 +12,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UIViewController *initViewController;
+    if (568 == [[UIScreen mainScreen] bounds].size.height) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboardfor4.0" bundle:nil];
+        initViewController = [storyboard instantiateInitialViewController];
+    }else{
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        initViewController = [storyboard instantiateInitialViewController];
+    }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = initViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
